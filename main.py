@@ -7,6 +7,8 @@ from selenium.webdriver.support.ui import Select
 import random
 from encrypt import decrypt
 import help_com as hc
+import sys
+import time
 
 def sweep_waste():
     dir_name = r"C:\Users\Pavilion\Documents\SCARLETT v2.0\\"
@@ -57,6 +59,29 @@ def php_myadmin():
     password.send_keys(decrypt('r^upyltaB'))
     browser.find_element_by_id('input_go').click()
 
+def github(repo):
+    audio("Creating github ripository")
+    browser = webdriver.Chrome("C:\chromedriver.exe")
+    browser.get('https://github.com/login')
+    username = browser.find_element_by_id('login_field')
+    username.send_keys('sdharchou@gmail.com')
+    password = browser.find_element_by_id('password')
+    password.send_keys(decrypt("ubzvu^opka2.B"))
+    browser.find_element_by_name('commit').click()
+    browser.get('https://github.com/new')
+    repo_name = browser.find_element_by_id('repository_name')
+    repo_name.send_keys(repo)
+    browser.find_element_by_id('repository_auto_init').click()
+    time.sleep(3)
+    browser.find_element_by_class_name('btn-primary').click()
+    time.sleep(2)
+    browser.find_element_by_class_name('btn-primary').click()
+    time.sleep(2)
+    browser.find_element_by_class_name('input-group-button').click()
+
+def who():
+    audio("I am scarlett. I am a virtual assistant. I can help you in your work. I can do many stuff. Press question mark to no what I can do.")
+    
 sweep_waste()
 while(1):
     command = input("How may I help you? ")
@@ -65,14 +90,15 @@ while(1):
     elif(command == "bye"):
         print("Bye bye")
         audio("Bye bye")
-        break
+        time.sleep(2)
+        sys.exit()
     elif(command == "whost"):
         web_host()
     elif(command == "pma"):
         php_myadmin()
     elif(command == "?"):
         hc.help_com()
-    elif(command == "sab"):
+    elif(command == "all"):
         hc.all_com()
     elif("hc/" in command):
         command = command.split("/")
@@ -81,6 +107,11 @@ while(1):
         audio("Starting zamp server")
         location = r'C:\xampp\xampp_start.exe'
         os.system(location)
+    elif(command == "repo"):
+        repo = input("Enter name for repo: ")
+        github(repo)
+    elif(command == "who"):
+        who()
     else:
         audio("I do not understand what you said")
 os.system("say 'hello world'")
